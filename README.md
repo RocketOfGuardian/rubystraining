@@ -7,5 +7,3 @@
 5. Commit changes to version history
 6. Review previous changes with git log
 7. Create New Branch updateREADME
-8. Test commit
-9. Test Autentification
