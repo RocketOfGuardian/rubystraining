@@ -1,5 +1,5 @@
 # README #
-<<<<<<< HEAD
+
 1. Initialize repository with git init
 2. Create changes to project files
 3. Check status of those files with git status
@@ -9,5 +9,3 @@
 7. Create New Branch updateREADME
 8. Test commit
 9. Test Autentification
-=======
->>>>>>> 49fb240 (Add first project files)
