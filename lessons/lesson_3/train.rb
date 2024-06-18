@@ -9,10 +9,10 @@ class Train
 			puts "Такого типа поезда не существует, используйте 1 или 2"
 			puts "1 - Пассажирский"
 			puts "2 - Грузовой"
-			return nil unless number && type && number_of_wagons
+		return nil unless number && type && number_of_wagons
 		else
-		@type = types[type]
-	end
+			@type = types[type]
+		end
 		@number_of_wagons = number_of_wagons
 		@speed = 0
 		@reverse = 0
@@ -66,8 +66,8 @@ class Train
 		if speed > 0 || reverse > 0
 			puts "Для сцепки вагона, требуется остановить поезд. На данный момент текущая скорость: #{@speed} км/ч; Реверс: #{@reverse} км/ч"
 		else
-		@number_of_wagons += 1
-		puts "К локомотиву присоединён вагон"
+			@number_of_wagons += 1
+			puts "К локомотиву присоединён вагон"
 		end
 	end
 
@@ -79,7 +79,7 @@ class Train
 		else
 			@number_of_wagons -= 1
 			puts "От локомотива отцепили вагон"
-	  end
+		end
 	end
 
 	def info_train # Информация о поезде
@@ -111,21 +111,21 @@ class Train
 		else
 			@index +=1
 			puts "Предыдущая станция: #{previous_station&.station_name}"
-    	puts "Tекущая_станция: #{current_station&.station_name}"
-    	puts "Следущая станция: #{next_station&.station_name}"
-  	end
-end
+			puts "Tекущая_станция: #{current_station&.station_name}"
+			puts "Следущая станция: #{next_station&.station_name}"
+		end
+	end
 
-  def move_back # Ехать назад по маршруту
-  	if speed > 0
-  		puts "Для движения по маршруту назад, требуется остановиться и включить реверс"
-  	elsif reverse == 0
+	def move_back # Ехать назад по маршруту
+		if speed > 0
+			puts "Для движения по маршруту назад, требуется остановиться и включить реверс"
+		elsif reverse == 0
 			puts "Для возврата на предыдущую станцию, требуется включить реверс"
 		else
 			@index -=1
 			puts "Предыдущая станция: #{previous_station&.station_name}"
-    	puts "Tекущая_станция: #{current_station&.station_name}"
-    	puts "Следущая станция: #{next_station&.station_name}"
-  	end
-  end
+			puts "Tекущая_станция: #{current_station&.station_name}"
+			puts "Следущая станция: #{next_station&.station_name}"
+		end
+	end
 end

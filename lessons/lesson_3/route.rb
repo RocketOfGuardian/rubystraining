@@ -1,5 +1,5 @@
 class Route
-attr_reader :starting_station, :intermediate_stations, :end_station, :split_stations
+	attr_reader :starting_station, :intermediate_stations, :end_station, :split_stations
 
 	def initialize(starting_station, end_station) # Инцициализация маршрута
 		@starting_station = starting_station
@@ -8,8 +8,8 @@ attr_reader :starting_station, :intermediate_stations, :end_station, :split_stat
 	end
 
 	def add_a_station(station_name) # Добавить промежуточную станцию
-	   @intermediate_stations << station_name
-	   @split_stations = [@starting_station] + @intermediate_stations + [@end_station]          
+		@intermediate_stations << station_name
+		@split_stations = [@starting_station] + @intermediate_stations + [@end_station]          
 	end
 
 	def station_delete(station_name) # Удалить станцию
