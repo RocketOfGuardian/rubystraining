@@ -1,4 +1,6 @@
+require_relative 'instance_counter.rb'
 class Route
+  include InstanceCounter
 	attr_reader :starting_station, :intermediate_stations, :end_station, :split_stations, :stations
 
 	def initialize(starting_station, end_station) # Инцициализация маршрута

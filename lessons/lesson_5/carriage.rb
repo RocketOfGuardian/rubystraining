@@ -1,4 +1,6 @@
+require_relative 'company_name.rb'
 class Carriage
+  include CompanyName
 	attr_reader :number, :type
 
 	def initialize(number)

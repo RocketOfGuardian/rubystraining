@@ -40,31 +40,31 @@ class Main
   ]
 
   STATION_MENU = [
-    {id: 1, title: 'Создать станцию', action: :create_station},
-    {id: 2, title: 'Просмотр созданных станций', action: :show_array},
-    {id: 3, title: 'Посмотреть поезда на станции', action: :trains_on_station}
+    {id: 1, title: '1. Создать станцию', action: :create_station},
+    {id: 2, title: '2. Просмотр созданных станций', action: :show_array},
+    {id: 3, title: '3. Посмотреть поезда на станции', action: :trains_on_station}
   ]
 
   TRAIN_MENU = [
-    {id: 1, title: 'Создать локомотив', action: :create_train}, 
-    {id: 2, title: 'Прицепить вагон к локомотиву', action: :add_carriage},
-    {id: 3, title: 'Отцепить вагон от локоматива', action: :delete_carriage},
-    {id: 4, title: 'Поставить поезд на маршрут', action: :assign_train},
-    {id: 5, title: 'Отправить поезд', action: :train_go}
+    {id: 1, title: '1. Создать локомотив', action: :create_train}, 
+    {id: 2, title: '2. Прицепить вагон к локомотиву', action: :add_carriage},
+    {id: 3, title: '3. Отцепить вагон от локоматива', action: :delete_carriage},
+    {id: 4, title: '4. Поставить поезд на маршрут', action: :assign_train},
+    {id: 5, title: '5. Отправить поезд', action: :train_go}
   ]
 
   TRAIN_CONTROL = [
-    {id: 1, title: 'Прибавить скорость', action: :speed}, 
-    {id: 2, title: 'Тормоз', action: :brake}, 
-    {id: 3, title: 'Реверс', action: :reverse}, 
-    {id: 4, title: 'Информация о поезде', action: :info_tr}
+    {id: 1, title: '1. Прибавить скорость', action: :speed}, 
+    {id: 2, title: '2. Тормоз', action: :brake}, 
+    {id: 3, title: '3. Реверс', action: :reverse}, 
+    {id: 4, title: '4. Информация о поезде', action: :info_tr}
   ]
 
   ROUTE_MENU = [
-    {id: 1, title: 'Создать маршрут', action: :create_route}, 
-    {id: 2, title: 'Добавить промежуточную станцию', action: :add_route_station}, 
-    {id: 3, title: 'Удалить промежуточную станцию', action: :delete_route_station}, 
-    {id: 4, title: 'Информация о маршруте', action: :show_array}
+    {id: 1, title: '1. Создать маршрут', action: :create_route}, 
+    {id: 2, title: '2. Добавить промежуточную станцию', action: :add_route_station}, 
+    {id: 3, title: '3. Удалить промежуточную станцию', action: :delete_route_station}, 
+    {id: 4, title: '4. Информация о маршруте', action: :show_array}
   ]
 
   TRAIN_TYPE_MENU = [
@@ -167,6 +167,8 @@ class Main
       puts "Поезд находится в движении. Для стыковки вагона, требуется остановиться"
       return
     end
+    puts "Введите наименования компании:"
+    CompanyName::company_name = gets.chomp
     puts "Введите номер вагона"
     carriage_number = gets.chomp
 
@@ -358,7 +360,7 @@ class Main
 
   def train_info(train)
     "Метод info перенести в метод объекта класса и назвать его to_s"
-    puts "Поезд -> Номер: #{train.number}; Тип: #{train.type} поезд; Компания: #{CompanyName::company_name} Количество вагонов: #{train.carriages}; Скорость: #{train.speed} км/ч; Скорость реверса: #{train.reverse} км/ч"
+    puts "Поезд -> Номер: #{train.number}; Тип: #{train.type} поезд;  Количество вагонов: #{train.carriages}; Скорость: #{train.speed} км/ч; Скорость реверса: #{train.reverse} км/ч"
     unless train.route.nil?
       if train.previous_station.nil?
         previous_station = "N/D"

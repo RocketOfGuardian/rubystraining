@@ -1,6 +1,8 @@
 require_relative 'company_name.rb'
+require_relative 'instance_counter.rb'
 class Train
   include CompanyName
+  include InstanceCounter
   attr_accessor :route
 	attr_reader :speed, :reverse, :number, :starting_station, :intermediate_stations, :end_station, :carriages
 

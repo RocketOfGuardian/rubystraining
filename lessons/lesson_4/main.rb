@@ -13,14 +13,21 @@ class Main
     loop do
       show_menu(MAIN_MENU, "Главное меню:")
       case gets.to_i
-      when 1 then station_menu
-      when 2 then train_menu
-      when 3 then train_control
-      when 4 then route_menu
+      when 1 then send(:station_menu)
+      when 2 then send(:train_menu)
+      when 3 then send(:train_control)
+      when 4 then send(:route_menu)
       when 0 then exit
       else puts "Данной категории не существует, для выхода введите: 0"
       end
     end
+  end
+
+  def show(menu)
+  menu.each {|item| puts item[:title]}
+  choice = gets.chomp.to_i
+  element = menu.find{|item| item[:id] == choice}
+  send(element[:action])
   end
 
   private
@@ -33,31 +40,31 @@ class Main
   ]
 
   STATION_MENU = [
-    'Создать станцию',
-    'Просмотр созданных станций',
-    'Посмотреть поезда на станции'
+    {id: 1, title: 'Создать станцию', action: :create_station},
+    {id: 2, title: 'Просмотр созданных станций', action: :show_array},
+    {id: 3, title: 'Посмотреть поезда на станции', action: :trains_on_station}
   ]
 
   TRAIN_MENU = [
-    'Создать локомотив', 
-    'Прицепить вагон к локомотиву',
-    'Отцепить вагон от локоматива',
-    'Поставить поезд на маршрут',
-    'Отправить поезд'
+    {id: 1, title: 'Создать локомотив', action: :create_train}, 
+    {id: 2, title: 'Прицепить вагон к локомотиву', action: :add_carriage},
+    {id: 3, title: 'Отцепить вагон от локоматива', action: :delete_carriage},
+    {id: 4, title: 'Поставить поезд на маршрут', action: :assign_train},
+    {id: 5, title: 'Отправить поезд', action: :train_go}
   ]
 
   TRAIN_CONTROL = [
-    'Прибавить скорость',
-    'Тормоз',
-    'Реверс',
-    'Информация о поезде'
+    {id: 1, title: 'Прибавить скорость', action: :speed}, 
+    {id: 2, title: 'Тормоз', action: :brake}, 
+    {id: 3, title: 'Реверс', action: :reverse}, 
+    {id: 4, title: 'Информация о поезде', action: :info_tr}
   ]
 
   ROUTE_MENU = [
-    'Создать маршрут',
-    'Добавить промежуточную станцию',
-    'Удалить промежуточную станцию',
-    'Информация о маршруте'
+    {id: 1, title: 'Создать маршрут', action: :create_route}, 
+    {id: 2, title: 'Добавить промежуточную станцию', action: :add_route_station}, 
+    {id: 3, title: 'Удалить промежуточную станцию', action: :delete_route_station}, 
+    {id: 4, title: 'Информация о маршруте', action: :show_array}
   ]
 
   TRAIN_TYPE_MENU = [
@@ -85,61 +92,20 @@ class Main
   end
 
   def station_menu
-    loop do
-      show_menu(STATION_MENU, "Меню станций:")
-      case gets.to_i
-      when 1 then create_station
-      when 2 then show_array(stations)
-      when 3 then trains_on_station
-      when 0 then return
-      else puts "Введенный элемент отсутствует в меню."
-      end
-    end
+    show(STATION_MENU)
   end
 
   def train_menu
-    loop do
-      show_menu(TRAIN_MENU, "Меню поездов:")
-      case gets.to_i
-      when 1 then create_train
-      when 2 then add_carriage
-      when 3 then delete_carriage
-      when 4 then assign_train
-      when 5 then train_go
-      when 0 then return
-      else puts "Введенный элемент отсутствует в меню."
-      end
-    end
+    show(TRAIN_MENU)
   end
 
   def train_control
-    loop do
-      show_menu(TRAIN_CONTROL, "Управление поездом:")
-      case gets.to_i
-      when 1 then speed
-      when 2 then brake
-      when 3 then reverse
-      when 4 then info_tr
-      when 0 then return
-      else puts "Введенный элемент отсутствует в меню."
-      end
-    end
+    show(TRAIN_CONTROL)
   end
 
   def route_menu
-    loop do
-      show_menu(ROUTE_MENU, "Меню маршрутов:")
-      case gets.to_i
-      when 1 then create_route
-      when 2 then add_route_station
-      when 3 then delete_route_station
-      when 4 then show_array(routes)
-      when 0 then return
-      else puts "Введенный элемент отсутствует в меню."
-      end
-    end
+    show(ROUTE_MENU)
   end
-  
 
   def create_station
     puts "Введите название станции:"

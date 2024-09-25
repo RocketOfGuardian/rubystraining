@@ -1,5 +1,5 @@
 class Train
-	attr_accessor :number_of_wagons, :route
+  attr_accessor :number_of_wagons, :route
 	attr_reader :speed, :reverse, :number, :type, :starting_station, :intermediate_stations, :end_station
 
 	def initialize(number, type, number_of_wagons) # Инцициализация поезда
