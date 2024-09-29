@@ -7,7 +7,6 @@ require_relative 'passenger_carriage.rb'
 require_relative 'station.rb'
 require_relative 'route.rb'
 
-include CompanyName
 class Main
   def main_menu
     loop do
@@ -132,7 +131,7 @@ class Main
 
   def create_train
     puts "Введите наименования компании:"
-    CompanyName::company_name = gets.chomp
+    company_name = gets.chomp
     puts "Введите номер поезда:"
     number = gets.chomp
     if trains.any? { |train| train.number == number }
@@ -141,8 +140,8 @@ class Main
     end
     show_menu(TRAIN_TYPE_MENU, "Выберите тип поезда:")
     case gets.to_i
-    when 1 then trains << PassengerTrain.new(number)
-    when 2 then trains << CargoTrain.new(number)
+    when 1 then trains << PassengerTrain.new(number, company_name)
+    when 2 then trains << CargoTrain.new(number, company_name)
     else
       puts "Такого действия не существует."
       return
@@ -168,13 +167,12 @@ class Main
       return
     end
     puts "Введите наименования компании:"
-    CompanyName::company_name = gets.chomp
+    company_name = gets.chomp
     puts "Введите номер вагона"
     carriage_number = gets.chomp
-
     carriage = case train
-    when CargoTrain then CargoCarriage.new(carriage_number)
-    when PassengerTrain then PassengerCarriage.new(carriage_number)
+    when CargoTrain then CargoCarriage.new(carriage_number, company_name)
+    when PassengerTrain then PassengerCarriage.new(carriage_number, company_name)
     end
     train.add_carriage(carriage)
     @carriages << carriage
@@ -360,7 +358,7 @@ class Main
 
   def train_info(train)
     "Метод info перенести в метод объекта класса и назвать его to_s"
-    puts "Поезд -> Номер: #{train.number}; Тип: #{train.type} поезд;  Количество вагонов: #{train.carriages}; Скорость: #{train.speed} км/ч; Скорость реверса: #{train.reverse} км/ч"
+    puts "Поезд -> Номер: #{train.number}; Тип: #{train.type} поезд; Компания производитель: #{train.company_name}; Количество вагонов: #{train.carriages}; Скорость: #{train.speed} км/ч; Скорость реверса: #{train.reverse} км/ч"
     unless train.route.nil?
       if train.previous_station.nil?
         previous_station = "N/D"

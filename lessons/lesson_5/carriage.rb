@@ -3,8 +3,9 @@ class Carriage
   include CompanyName
 	attr_reader :number, :type
 
-	def initialize(number)
+	def initialize(number, company_name)
 		@number = number
+    @company_name = company_name
     init_type
 	end
 

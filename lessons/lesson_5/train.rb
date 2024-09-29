@@ -12,12 +12,12 @@ class Train
 		@@trains[number]
 	end
 
-	def initialize(number) # Инцициализация поезда
+	def initialize(number, company_name) # Инцициализация поезда
 		@number = number
 		@speed = 0
 		@reverse = 0
 		@carriages = []
-    CompanyName.company_name
+    @company_name = company_name
 	end
 
 	def up_speed(speed) # Добавить скорость
